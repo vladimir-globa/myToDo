@@ -1,0 +1,18 @@
+body {
+    background-color: #708090;
+}
+.fon-question {
+    background-color: #FAEBD7;
+}
+
+.strike-text span {
+    text-decoration: line-through;
+}
+
+.mt15 {
+    margin-top: 15px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
