@@ -4,8 +4,8 @@ $('.add-task').bind('click', function(event){
     if (value) {
         $(".list-tasks").prepend(` <li class="list-group-item list-tasks-item">
                 <div class="row">
-                    <div class="col-md-10">
-                        <span contenteditable="true" >${value}</span>
+                    <div class="col-md-10 editable">
+                        <span>${value}</span>
                     </div>
                     <div class="col-md-1">
                         <button type="button" class="btn btn-outline-success mark">
@@ -45,5 +45,34 @@ $(document).on('click', '.mark', function() {
         $('.mark').addClass("strike-text");
         $(this).parents('.list-tasks-item').addClass("strike-text");
     }
-})
+});
 
+$(document).on('click', '.editable span', function() {
+    const text = $(this).text();
+    $(this).parent().html(`<div>
+                             <input class="form-control" value="${text}"/>
+                             <button type="button" class="btn btn-outline-primary save-editable">
+                               <i class="fa fa-check" aria-hidden="true"></i>
+                             </button>
+                           </div>`);
+});
+
+$(document).on('keyup', '.editable input', function() {
+    let empty = false;
+    $(this).each(function() {
+        if ($(this).val().length == 0) {
+            empty = true;
+        }
+    });
+
+    if (empty) {
+        $(this).parent().find('button.save-editable').attr('disabled', 'disabled');
+    } else {
+        $(this).parent().find('button.save-editable').removeAttr('disabled');
+    }
+});
+
+$(document).on('click', '.editable .save-editable', function() {
+    const value = $(this).parent().find('input').val();
+    $(this).parents('.editable').html(`<span>${value}</span>`);
+});

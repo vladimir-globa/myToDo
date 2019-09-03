@@ -16,3 +16,11 @@ body {
 .mb15 {
     margin-bottom: 15px;
 }
+
+.editable div {
+    display: flex;
+}
+
+.editable div button {
+    margin-left: 20px;
+}
