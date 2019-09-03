@@ -1,6 +1,8 @@
 $('.add-task').bind('click', function(event){
+    event.preventDefault();
     let value = $("input").val();
-    $(".list-tasks").prepend(` <li class="list-group-item list-tasks-item">
+    if (value) {
+        $(".list-tasks").prepend(` <li class="list-group-item list-tasks-item">
                 <div class="row">
                     <div class="col-md-10">
                         <span contenteditable="true" >${value}</span>
@@ -17,8 +19,17 @@ $('.add-task').bind('click', function(event){
                     </div>
                 </div>
             </li>`);
-    $('#my-form')[0].reset();
-    event.preventDefault();
+        $('#my-form')[0].reset();
+    }
+});
+
+$('.fon-question').on('input', function (e) {
+    var add_button = $(this).closest('#my-form').find('.add-task');
+    if (e.target.value) {
+        add_button.attr('disabled', false);
+    } else {
+        add_button.attr('disabled', true);
+    }
 });
 
 $(document).on('click', '.delete', function() {
