@@ -62,6 +62,8 @@ $(document).on('keyup', '.editable input', function() {
     $(this).each(function() {
         if ($(this).val().length == 0) {
             empty = true;
+        } else if ($.trim($(this).val()) == '') {
+            empty = true;
         }
     });
 
